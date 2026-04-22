@@ -1,0 +1,26 @@
+<div class="card shadow-sm mb-3">
+  <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+    <h5 class="mb-0">{{ voyage.destination }}</h5>
+    <span class="badge bg-light text-dark">ID: {{ voyage.idVoyage }}</span>
+  </div>
+  <img
+    *ngIf="voyage.imageUrl"
+    [src]="'http://localhost:8080' + voyage.imageUrl"
+    alt="voyage"
+    class="card-img-top"
+    style="max-height: 200px; object-fit: cover"
+  />
+  <div class="card-body">
+    <p class="mb-1"><strong>Prix :</strong> {{ voyage.prix }} TND</p>
+    <p class="mb-1"><strong>Date Départ :</strong> {{ voyage.dateDepart | date: 'dd/MM/yyyy' }}</p>
+    <p class="mb-1"><strong>Date Retour :</strong> {{ voyage.dateRetour | date: 'dd/MM/yyyy' }}</p>
+    <p class="mb-1">
+      <strong>Circuit :</strong>
+      {{ voyage.nomCircuit || voyage.circuit?.nomCircuit || '-' }}
+    </p>
+  </div>
+  <div class="card-footer text-end">
+    <button class="btn btn-warning btn-sm me-2" (click)="onEdit()">Modifier</button>
+    <button class="btn btn-danger btn-sm" (click)="onDelete()">Supprimer</button>
+  </div>
+</div>

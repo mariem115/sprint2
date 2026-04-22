@@ -1,0 +1,68 @@
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Ajouter un Voyage</h4>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="onSave()" #f="ngForm">
+        <div class="mb-3">
+          <label for="destination" class="form-label">Destination</label>
+          <input
+            id="destination"
+            type="text"
+            class="form-control"
+            name="destination"
+            [(ngModel)]="voyage.destination"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="prix" class="form-label">Prix (TND)</label>
+          <input
+            id="prix"
+            type="number"
+            class="form-control"
+            name="prix"
+            [(ngModel)]="voyage.prix"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="dateDepart" class="form-label">Date Départ</label>
+          <input
+            id="dateDepart"
+            type="date"
+            class="form-control"
+            name="dateDepart"
+            [(ngModel)]="voyage.dateDepart"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="dateRetour" class="form-label">Date Retour</label>
+          <input
+            id="dateRetour"
+            type="date"
+            class="form-control"
+            name="dateRetour"
+            [(ngModel)]="voyage.dateRetour"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="circuit" class="form-label">Circuit</label>
+          <select id="circuit" class="form-select" name="circuit" [(ngModel)]="voyage.idCircuit">
+            <option [ngValue]="undefined">-- Aucun --</option>
+            <option *ngFor="let c of circuits" [ngValue]="c.idCircuit">{{ c.nomCircuit }}</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Ajouter Voyage</button>
+      </form>
+    </div>
+  </div>
+</div>

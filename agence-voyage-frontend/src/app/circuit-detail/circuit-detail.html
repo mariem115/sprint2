@@ -1,0 +1,13 @@
+<div class="card shadow-sm mb-3">
+  <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+    <h5 class="mb-0">{{ circuit.nomCircuit }}</h5>
+    <span class="badge bg-light text-dark">ID: {{ circuit.idCircuit }}</span>
+  </div>
+  <div class="card-body">
+    <p class="mb-0"><strong>Description :</strong> {{ circuit.description || '-' }}</p>
+  </div>
+  <div class="card-footer text-end">
+    <button class="btn btn-warning btn-sm me-2" (click)="onEdit()">Modifier</button>
+    <button class="btn btn-danger btn-sm" (click)="onDelete()">Supprimer</button>
+  </div>
+</div>

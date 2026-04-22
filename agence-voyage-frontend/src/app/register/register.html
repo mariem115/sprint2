@@ -1,0 +1,90 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white text-center">
+          <h4 class="mb-0">{{ verificationStep ? 'Vérification Email' : 'Inscription' }}</h4>
+        </div>
+        <div class="card-body">
+          <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+          <div *ngIf="successMessage && verificationStep" class="alert alert-success">
+            {{ successMessage }}
+          </div>
+
+          <form *ngIf="!verificationStep" (ngSubmit)="onRegister()" #f="ngForm">
+            <div class="mb-3">
+              <label for="username" class="form-label">Nom d'utilisateur</label>
+              <input
+                id="username"
+                type="text"
+                class="form-control"
+                name="username"
+                [(ngModel)]="user.username"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                id="email"
+                type="email"
+                class="form-control"
+                name="email"
+                [(ngModel)]="user.email"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Mot de passe</label>
+              <input
+                id="password"
+                type="password"
+                class="form-control"
+                name="password"
+                [(ngModel)]="user.password"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirmer le mot de passe</label>
+              <input
+                id="confirmPassword"
+                type="password"
+                class="form-control"
+                name="confirmPassword"
+                [(ngModel)]="confirmPassword"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">S'inscrire</button>
+
+            <div class="text-center mt-3">
+              <a routerLink="/login">Déjà inscrit ? Se connecter</a>
+            </div>
+          </form>
+
+          <form *ngIf="verificationStep" (ngSubmit)="onVerify()" #v="ngForm">
+            <div class="mb-3">
+              <label for="verificationCode" class="form-label">Code de vérification (6 chiffres)</label>
+              <input
+                id="verificationCode"
+                type="text"
+                class="form-control"
+                name="verificationCode"
+                [(ngModel)]="verificationCode"
+                maxlength="6"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Vérifier Email</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

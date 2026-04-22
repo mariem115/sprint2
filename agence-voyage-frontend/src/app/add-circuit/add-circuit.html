@@ -1,0 +1,35 @@
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Ajouter un Circuit</h4>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="onSave()" #f="ngForm">
+        <div class="mb-3">
+          <label for="nomCircuit" class="form-label">Nom du Circuit</label>
+          <input
+            id="nomCircuit"
+            type="text"
+            class="form-control"
+            name="nomCircuit"
+            [(ngModel)]="circuit.nomCircuit"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            id="description"
+            class="form-control"
+            name="description"
+            rows="4"
+            [(ngModel)]="circuit.description"
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Ajouter Circuit</button>
+      </form>
+    </div>
+  </div>
+</div>

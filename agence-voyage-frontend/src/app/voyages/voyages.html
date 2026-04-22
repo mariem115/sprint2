@@ -1,0 +1,81 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Liste des Voyages</h2>
+
+  <div class="input-group mb-3">
+    <label for="searchKeyword" class="visually-hidden">Rechercher par destination</label>
+    <input
+      id="searchKeyword"
+      type="text"
+      class="form-control"
+      placeholder="Rechercher par destination..."
+      name="searchKeyword"
+      [(ngModel)]="searchKeyword"
+      (input)="searchVoyages()"
+    />
+    <button class="btn btn-outline-primary" type="button" (click)="searchVoyages()">
+      Rechercher
+    </button>
+    <button class="btn btn-outline-secondary" type="button" (click)="resetSearch()">
+      Réinitialiser
+    </button>
+  </div>
+
+  <table class="table table-striped table-bordered table-hover align-middle">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Image</th>
+        <th>Destination</th>
+        <th>Prix (TND)</th>
+        <th>Date Départ</th>
+        <th>Date Retour</th>
+        <th>Circuit</th>
+        <th class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let voyage of voyages">
+        <td>{{ voyage.idVoyage }}</td>
+        <td>
+          <img
+            *ngIf="voyage.imageUrl"
+            [src]="'http://localhost:8080' + voyage.imageUrl"
+            alt="voyage"
+            style="width: 60px; height: 60px; object-fit: cover"
+            class="rounded"
+          />
+        </td>
+        <td>{{ voyage.destination }}</td>
+        <td>{{ voyage.prix }}</td>
+        <td>{{ voyage.dateDepart | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ voyage.dateRetour | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ voyage.nomCircuit || voyage.circuit?.nomCircuit || '-' }}</td>
+        <td class="text-center">
+          <a
+            class="btn btn-warning btn-sm me-2"
+            [routerLink]="['/edit-voyage', voyage.idVoyage]"
+          >
+            Modifier
+          </a>
+          <button class="btn btn-danger btn-sm" (click)="deleteVoyage(voyage)">
+            Supprimer
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="voyages.length === 0">
+        <td colspan="8" class="text-center text-muted">Aucun voyage disponible.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="mt-5 mb-3">Vue en cartes</h3>
+  <div class="row">
+    <div class="col-md-6 col-lg-4" *ngFor="let v of voyages">
+      <app-voyage-detail
+        [voyage]="v"
+        (deleteEvent)="deleteVoyage($event)"
+        (editEvent)="onEditVoyage($event)"
+      ></app-voyage-detail>
+    </div>
+  </div>
+</div>
