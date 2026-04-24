@@ -23,7 +23,7 @@ public class Circuit {
     @OneToMany(mappedBy = "circuit")
     private List<Voyage> voyages;
 
-    public Circuit() {
+    public Circuit() {  
     }
 
     public Circuit(String nomCircuit, String description) {
