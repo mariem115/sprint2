@@ -9,18 +9,14 @@ import { User } from '../model/user.model';
 export class AuthService {
   private http = inject(HttpClient);
   private usersBaseUrl = 'http://localhost:8081/users';
-  private loginUrl = `${this.usersBaseUrl}/login`;
+  private loginUrl = `${this.usersBaseUrl}/api/auth/login`;
 
   private readonly TOKEN_KEY = 'jwt-token';
   private readonly USERNAME_KEY = 'username';
 
   login(username: string, password: string): Observable<HttpResponse<unknown>> {
-    const body = new URLSearchParams();
-    body.set('username', username);
-    body.set('password', password);
-
-    return this.http.post(this.loginUrl, body.toString(), {
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    return this.http.post(this.loginUrl, { username, password }, {
+      headers: { 'Content-Type': 'application/json' },
       observe: 'response',
       responseType: 'text',
     });

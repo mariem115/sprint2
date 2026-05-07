@@ -1,0 +1,15 @@
+C:\ed\Semestre2\MiniProjetWeb\agence-users-backend\src\main\java\com\agence\users\AgenceUsersBackendApplication.java
+C:\ed\Semestre2\MiniProjetWeb\agence-users-backend\src\main\java\com\agence\users\bootstrap\AdminUserBootstrap.java
+C:\ed\Semestre2\MiniProjetWeb\agence-users-backend\src\main\java\com\agence\users\controllers\AuthController.java
+C:\ed\Semestre2\MiniProjetWeb\agence-users-backend\src\main\java\com\agence\users\controllers\UserController.java
+C:\ed\Semestre2\MiniProjetWeb\agence-users-backend\src\main\java\com\agence\users\dto\LoginRequest.java
+C:\ed\Semestre2\MiniProjetWeb\agence-users-backend\src\main\java\com\agence\users\entities\AppRole.java
+C:\ed\Semestre2\MiniProjetWeb\agence-users-backend\src\main\java\com\agence\users\entities\AppUser.java
+C:\ed\Semestre2\MiniProjetWeb\agence-users-backend\src\main\java\com\agence\users\repos\AppRoleRepository.java
+C:\ed\Semestre2\MiniProjetWeb\agence-users-backend\src\main\java\com\agence\users\repos\AppUserRepository.java
+C:\ed\Semestre2\MiniProjetWeb\agence-users-backend\src\main\java\com\agence\users\security\JWTAuthorizationFilter.java
+C:\ed\Semestre2\MiniProjetWeb\agence-users-backend\src\main\java\com\agence\users\security\JwtUtils.java
+C:\ed\Semestre2\MiniProjetWeb\agence-users-backend\src\main\java\com\agence\users\security\MyUserDetailsService.java
+C:\ed\Semestre2\MiniProjetWeb\agence-users-backend\src\main\java\com\agence\users\security\SecurityConfig.java
+C:\ed\Semestre2\MiniProjetWeb\agence-users-backend\src\main\java\com\agence\users\service\AccountService.java
+C:\ed\Semestre2\MiniProjetWeb\agence-users-backend\src\main\java\com\agence\users\service\AccountServiceImpl.java

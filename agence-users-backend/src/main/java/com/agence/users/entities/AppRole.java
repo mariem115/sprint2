@@ -4,14 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class AppRole {
 
     @Id
@@ -19,4 +13,28 @@ public class AppRole {
     private Long idRole;
 
     private String roleName;
+
+    public AppRole() {
+    }
+
+    public AppRole(Long idRole, String roleName) {
+        this.idRole = idRole;
+        this.roleName = roleName;
+    }
+
+    public Long getIdRole() {
+        return idRole;
+    }
+
+    public void setIdRole(Long idRole) {
+        this.idRole = idRole;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
 }

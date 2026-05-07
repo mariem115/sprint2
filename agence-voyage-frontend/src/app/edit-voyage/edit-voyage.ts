@@ -67,4 +67,25 @@ export class EditVoyage implements OnInit {
       },
     });
   }
+
+  deleteImage(): void {
+    if (!this.voyage.idVoyage) {
+      return;
+    }
+    if (!confirm('Supprimer l\'image de ce voyage ?')) {
+      return;
+    }
+    this.uploadMessage = '';
+    this.voyageService.deleteImage(this.voyage.idVoyage).subscribe({
+      next: (updated) => {
+        this.voyage = updated;
+        this.selectedFile = null;
+        this.uploadMessage = 'Image supprimée.';
+      },
+      error: (err) => {
+        console.error('Erreur suppression image', err);
+        this.uploadMessage = 'Échec de la suppression.';
+      },
+    });
+  }
 }

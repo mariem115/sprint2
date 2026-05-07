@@ -1,0 +1,12 @@
+com\agence\users\security\MyUserDetailsService.class
+com\agence\users\security\SecurityConfig.class
+com\agence\users\repos\AppRoleRepository.class
+com\agence\users\AgenceUsersBackendApplication.class
+com\agence\users\entities\AppUser.class
+com\agence\users\security\JWTAuthorizationFilter.class
+com\agence\users\security\JwtUtils.class
+com\agence\users\service\AccountServiceImpl.class
+com\agence\users\service\AccountService.class
+com\agence\users\controllers\UserController.class
+com\agence\users\repos\AppUserRepository.class
+com\agence\users\entities\AppRole.class

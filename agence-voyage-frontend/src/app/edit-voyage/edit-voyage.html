@@ -87,8 +87,11 @@
           (change)="onFileSelected($event)"
         />
       </div>
-      <button type="button" class="btn btn-primary" (click)="uploadImage()" [disabled]="!selectedFile">
+      <button type="button" class="btn btn-primary me-2" (click)="uploadImage()" [disabled]="!selectedFile">
         Uploader l'image
+      </button>
+      <button type="button" class="btn btn-danger" (click)="deleteImage()" [disabled]="!voyage.imageUrl">
+        Supprimer l'image
       </button>
       <div *ngIf="uploadMessage" class="mt-2 alert alert-info">{{ uploadMessage }}</div>
     </div>

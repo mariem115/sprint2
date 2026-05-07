@@ -3,7 +3,7 @@ package com.agence.voyage.restcontrollers;
 import com.agence.voyage.entities.Voyage;
 import com.agence.voyage.service.VoyageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,6 @@ import java.nio.file.Paths;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin("*")
 public class FileUploadController {
 
     @Autowired
@@ -40,6 +39,24 @@ public class FileUploadController {
             throw new IOException("Voyage not found: " + id);
         }
         voyage.setImageUrl("/agence/images/" + filename);
+        return voyageService.updateVoyage(voyage);
+    }
+
+    @DeleteMapping("/uploadImage/{id}")
+    public Voyage deleteImage(@PathVariable Long id) throws IOException {
+        Voyage voyage = voyageService.getVoyage(id);
+        if (voyage == null) {
+            throw new IOException("Voyage not found: " + id);
+        }
+        if (voyage.getImageUrl() != null) {
+            String prefix = "/agence/images/";
+            String path = voyage.getImageUrl();
+            if (path.startsWith(prefix)) {
+                Path filePath = Paths.get("uploads/" + path.substring(prefix.length()));
+                Files.deleteIfExists(filePath);
+            }
+            voyage.setImageUrl(null);
+        }
         return voyageService.updateVoyage(voyage);
     }
 }

@@ -49,4 +49,8 @@ export class VoyageService {
     formData.append('file', file);
     return this.http.post<Voyage>(`${this.apiUrl}/uploadImage/${id}`, formData);
   }
+
+  deleteImage(id: number): Observable<Voyage> {
+    return this.http.delete<Voyage>(`${this.apiUrl}/uploadImage/${id}`);
+  }
 }

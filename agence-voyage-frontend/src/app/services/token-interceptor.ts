@@ -3,10 +3,11 @@ import { inject } from '@angular/core';
 import { AuthService } from './auth';
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
+  const url = req.url;
   if (
-    req.url.includes('/login') ||
-    req.url.includes('/register') ||
-    req.url.includes('/verifyEmail')
+    url.includes('/login') ||
+    url.includes('/api/register') ||
+    url.includes('/verifyEmail')
   ) {
     return next(req);
   }

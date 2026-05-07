@@ -7,7 +7,6 @@ import com.agence.voyage.mapper.VoyageMapper;
 import com.agence.voyage.service.CircuitService;
 import com.agence.voyage.service.VoyageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +22,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin("*")
 public class VoyageRESTController {
 
     @Autowired

@@ -1,6 +1,7 @@
 package com.agence.users.security;
 
 import com.agence.users.entities.AppUser;
+import com.agence.users.repos.AppUserRepository;
 import com.agence.users.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,18 +19,25 @@ public class MyUserDetailsService implements UserDetailsService {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    private AppUserRepository appUserRepository;
+
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AppUser appUser = accountService.loadUserByUsername(username);
-        if (appUser == null) {
-            throw new UsernameNotFoundException("User not found: " + username);
+    public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
+        AppUser appUser = accountService.loadUserByUsername(usernameOrEmail);
+        if (appUser == null && usernameOrEmail != null && usernameOrEmail.contains("@")) {
+            appUser = appUserRepository.findByEmail(usernameOrEmail);
         }
-        return new User(
-                appUser.getUsername(),
-                appUser.getPassword(),
-                appUser.getRoles().stream()
+        if (appUser == null) {
+            throw new UsernameNotFoundException("User not found: " + usernameOrEmail);
+        }
+        return User.builder()
+                .username(appUser.getUsername())
+                .password(appUser.getPassword())
+                .disabled(!appUser.isActive())
+                .authorities(appUser.getRoles().stream()
                         .map(r -> new SimpleGrantedAuthority(r.getRoleName()))
-                        .collect(Collectors.toList())
-        );
+                        .collect(Collectors.toList()))
+                .build();
     }
 }

@@ -32,8 +32,12 @@ export class Login {
         this.authService.saveUsername(this.user.username);
         this.router.navigate(['/voyages']);
       },
-      error: () => {
-        this.errorMessage = 'Identifiants incorrects. Veuillez réessayer.';
+      error: (err) => {
+        if (err?.status === 403) {
+          this.errorMessage = 'Compte désactivé';
+        } else {
+          this.errorMessage = 'Identifiants incorrects. Veuillez réessayer.';
+        }
       },
     });
   }
